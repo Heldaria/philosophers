@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rigel <rigel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:41:45 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/22 20:07:33 by rigel            ###   ########.fr       */
+/*   Updated: 2022/07/25 12:23:39 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_philo
 }	t_philo;
 
 uint32_t	ft_ulong_atoi(const char *nptr);
-t_philo			*ft_philonew(int i, t_arg *args, t_philo **philos);
+t_philo			*ft_philonew(int i, t_arg *args);
 uint64_t		get_time();
 void			print_status(char *str, t_philo *philos);
 void			*start_routine(void *philo);

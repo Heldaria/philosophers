@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rigel <rigel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:35:15 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/22 20:12:07 by rigel            ###   ########.fr       */
+/*   Updated: 2022/07/25 12:35:46 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	*start_routine(void *philo)
 	t_philo	*const phi = philo;
 	t_philo	*begin;
 
+	printf("Start routine\n");
 	begin = phi;
 	pthread_mutex_lock(&phi->arg->start_all);
 	pthread_mutex_unlock(&phi->arg->start_all);
@@ -97,12 +98,14 @@ int	set_philo(int i, t_arg *args, t_philo **philos)
 {
 	t_philo	*new;
 
-	new = ft_philonew(i, args, philos);
-	if (pthread_create(&new->thread, NULL, start_routine, philos))
+	new = ft_philonew(i, args);
+	if (pthread_create(&new->thread, NULL, start_routine, new))
 		return (printf("%s %i %s\n", "Philosopher", i, "thread creation failed"), 0);
-	if (pthread_mutex_init(&new->fork, NULL))
-		return (printf("Mutex initialisation failed\n"), 0);
-	if (*philos != NULL)
+	// if (pthread_mutex_init(&new->fork, NULL))
+	// 	return (printf("Mutex initialisation failed\n"), 0);
+	if (*philos == NULL)
+		*philos = new;
+	else
 		ft_philoadd_back(philos, new);
 	return (1);
 }
@@ -113,6 +116,7 @@ int	main(int argc, char **argv)
 	t_arg			args;
 	t_philo			*philos;
 
+	philos = NULL;
 	if (argc != 5 && argc != 6)
 		return(printf("Invalid number of arguments\n"), 0);
 	if (ft_ulong_atoi(argv[1]) <= 0)
@@ -130,7 +134,7 @@ int	main(int argc, char **argv)
 		return (printf("Mutex initialisation failed\n"), 0);
 	if (pthread_mutex_init(&args.status, NULL))
 		return (printf("Mutex initialisation failed\n"), 0);
-	pthread_mutex_lock(&args.start_all);
+	// pthread_mutex_lock(&args.start_all);
 	i = 1;
 	while (i <= ft_ulong_atoi(argv[1]))
 	{
@@ -141,5 +145,16 @@ int	main(int argc, char **argv)
 	if (pthread_create(&args.time_lord, NULL, ft_time_lord, philos))
 		return (printf("Time Lord thread creation failed\n"), 0);
 	args.time_passed = get_time();
-	pthread_mutex_unlock(&args.start_all);
+	// pthread_mutex_unlock(&args.start_all);
 }
+
+// int	main(void)
+// {
+// 	t_philo	*new;
+// 	t_philo	**philos;
+
+// 	new = ft_philonew(1, NULL);
+// 	philos = NULL;
+// 	ft_philoadd_back(philos, new);
+// 	return (0);
+// }
