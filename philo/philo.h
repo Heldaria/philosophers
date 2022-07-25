@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:41:45 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/25 12:23:39 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:48:32 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_arg
 	uint32_t		time_to_sleep;
 	uint32_t		numb_must_eat;
 	uint64_t		time_passed;
-	pthread_mutex_t	start_all;
-	pthread_mutex_t	status;
+	pthread_mutex_t	*start_all;
+	pthread_mutex_t	*status;
 	bool			death;
 	pthread_t		time_lord;
 }	t_arg;
@@ -41,13 +41,13 @@ typedef struct s_philo
 	int				number;
 	uint32_t		meal_count;
 	uint32_t		last_meal;
-	pthread_mutex_t	fork;
+	pthread_mutex_t	*fork;
 	pthread_t		thread;
 	t_arg			*arg;
 	struct s_philo	*next;
 }	t_philo;
 
-uint32_t	ft_ulong_atoi(const char *nptr);
+uint32_t		ft_ulong_atoi(const char *nptr);
 t_philo			*ft_philonew(int i, t_arg *args);
 uint64_t		get_time();
 void			print_status(char *str, t_philo *philos);
