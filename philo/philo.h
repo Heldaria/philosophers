@@ -6,12 +6,20 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:41:45 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/26 17:30:17 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:51:09 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+# ifndef NOCOLOR
+#  define RED "\e[32m"
+#  define NORMAL "\e[0m"
+# else
+#  define RED ""
+#  define NORMAL ""
+# endif
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -32,7 +40,6 @@ typedef struct s_arg
 	uint32_t		time_to_sleep;
 	uint32_t		numb_must_eat;
 	uint64_t		start_time;
-	pthread_mutex_t	start_all;
 	pthread_mutex_t	status;
 	bool			death;
 	t_philo			*begin;
@@ -43,7 +50,7 @@ typedef struct s_philo
 {
 	int				number;
 	uint32_t		meal_count;
-	uint32_t		last_meal;
+	uint64_t		last_meal;
 	pthread_mutex_t	fork;
 	pthread_t		thread;
 	t_arg			*arg;
@@ -55,8 +62,10 @@ t_philo			*ft_philonew(int i, t_arg *args);
 uint64_t		get_time();
 int				print_status(char *str, t_philo *philos);
 void			*start_routine(void *philo);
-int				ft_time_lord(t_philo *philo);
+int				ft_time_lord(t_arg *arg);
 int				set_philo(int i, t_arg *args, t_philo **philos);
 void			ft_philoadd_back(t_philo **alst, t_philo *new);
+int				ft_sleep(t_philo *philo, uint64_t duration);
+void			philo_clear(t_philo *philos);
 
 #endif
