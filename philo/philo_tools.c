@@ -6,14 +6,14 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:43:26 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/26 21:48:15 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/27 15:50:13 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include "philo.h"
 
-void	ft_assert(bool condition, const char *message)
+static void	ft_assert(bool condition, const char *message)
 {
 	(void)condition;
 	(void)message;
@@ -31,8 +31,6 @@ t_philo	*ft_philonew(int i, t_arg *args)
 	new->meal_count = 0;
 	if (pthread_mutex_init(&new->fork, NULL))
 		return (printf("Mutex initialisation failed\n"), free(new), NULL);
-	// if (pthread_create(&new->thread, NULL, start_routine, *philos))
-	// 	return (printf("Thread creation failed\n"), NULL);
 	new->arg = args;
 	new->next = NULL;
 	return (new);
