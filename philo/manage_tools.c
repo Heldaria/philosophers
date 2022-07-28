@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:29:10 by llepiney          #+#    #+#             */
-/*   Updated: 2022/07/27 15:59:11 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:54:37 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ uint64_t	get_time(void)
 
 void	print_status_unchecked(char *str, t_philo *philos)
 {
-	printf("%lu %i %s\n", get_time() - philos->arg->start_time,
+	printf("[%lums] %i %s\n", get_time() - philos->arg->start_time,
 		philos->number, str);
 }
 

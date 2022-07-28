@@ -6,13 +6,14 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:55:05 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/27 16:01:51 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:45:56 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdint.h>
 
-uint32_t	ft_ulong_atoi(const char *nptr)
+bool	ft_ulong_atoi(const char *nptr, uint32_t *res)
 {
 	int			i;
 	uint32_t	result;
@@ -21,8 +22,11 @@ uint32_t	ft_ulong_atoi(const char *nptr)
 	result = 0;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		result = result * 10 + nptr[i] - '0';
+		if (result > (UINT32_MAX - (nptr[i] - '0') / 10))
+			return (0);
+		result = result * 10 + (nptr[i] - '0');
 		i++;
 	}
-	return (result);
+	*res = result;
+	return (1);
 }

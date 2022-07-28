@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:35:15 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/28 11:36:30 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:01:05 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,7 @@ int	main(int argc, char **argv)
 	uint32_t		i;
 	t_arg			args;
 
-	if (!set_check_args(argc, argv, &args))
-		return (0);
-	if (!solo_die(&args))
+	if (!set_check_args(argc, argv, &args) || !solo_die(&args))
 		return (0);
 	if (pthread_mutex_init(&args.status, NULL))
 		return (printf("Mutex initialisation failed\n"), 0);

@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:41:45 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/27 16:00:06 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:03:28 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_philo
 }	t_philo;
 
 /******************************MAIN*************************************/
-uint32_t		ft_ulong_atoi(const char *nptr);
+bool			ft_ulong_atoi(const char *nptr, uint32_t *res);
 void			*start_routine(void *philo);
 int				ft_time_lord(t_arg *arg);
 void			*eating(t_philo *phi, pthread_mutex_t **first,
@@ -74,5 +74,8 @@ void			set_fork(t_philo *phi, pthread_mutex_t **first,
 					pthread_mutex_t **second);
 int				set_check_args(int argc, char **argv, t_arg *args);
 int				solo_die(t_arg *args);
+bool			is_num(int argc, char **argv, int i);
+bool			is_int(uint32_t n);
+bool			int_check(char **argv, t_arg *args);
 
 #endif

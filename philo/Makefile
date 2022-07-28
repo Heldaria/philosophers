@@ -6,14 +6,14 @@
 #    By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 14:36:59 by llepiney          #+#    #+#              #
-#    Updated: 2022/07/28 11:39:27 by llepiney         ###   ########.fr        #
+#    Updated: 2022/07/28 12:11:22 by llepiney         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRC =	ft_ulong_atoi.c main.c \
-		philo_tools.c set_tools.c manage_tools.c \
+		philo_tools.c set_tools.c manage_tools.c check_args.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -21,7 +21,7 @@ OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
