@@ -6,11 +6,12 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:45:16 by llepiney          #+#    #+#             */
-/*   Updated: 2022/07/28 13:25:29 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:33:28 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <limits.h>
 
 bool	is_num(int argc, char **argv, int i)
 {
@@ -39,13 +40,35 @@ bool	is_num(int argc, char **argv, int i)
 	return (1);
 }
 
-bool	int_check(char **argv, t_arg *args)
+
+static int	is_int(char *n)
 {
-	if (!ft_ulong_atoi(argv[1], &args->phil_numb)
-		|| !ft_ulong_atoi(argv[2], &args->time_to_die)
-		|| !ft_ulong_atoi(argv[3], &args->time_to_eat)
-		|| !ft_ulong_atoi(argv[4], &args->time_to_sleep)
-		|| (args->argc == 6 && !ft_ulong_atoi(argv[5], &args->numb_must_eat)))
+	int	i;
+
+	if (!n)
+		return (0);
+	if (ft_atoi(n) < 0 || ft_atoi(n) > 2147483647)
+		return (-1);
+	i = 0;
+	if (n[i] == '-')
+		i++;
+	while (n[i])
+	{
+		if (n[i] < '0' || n[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+bool	int_check(char **argv,t_arg *args)
+{
+	(void)argv;
+	if (is_int(argv[1]) < 0
+		|| is_int(argv[2]) < 0
+		|| is_int(argv[3]) < 0
+		|| is_int(argv[4]) < 0
+		|| (args->argc == 6 && is_int(argv[5]) < 0))
 		return (0);
 	return (1);
 }

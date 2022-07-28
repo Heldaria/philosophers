@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:29:10 by llepiney          #+#    #+#             */
-/*   Updated: 2022/07/28 12:54:37 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:25:29 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_sleep(t_philo *philo, uint64_t duration)
 {
-	const uint64_t	end = get_time() + duration;
+	const long long	end = get_time() + duration;
 
 	while (get_time() < end)
 	{
@@ -28,7 +28,7 @@ int	ft_sleep(t_philo *philo, uint64_t duration)
 	return (1);
 }
 
-uint64_t	get_time(void)
+long long	get_time(void)
 {
 	struct timeval	timeval;
 
@@ -38,7 +38,7 @@ uint64_t	get_time(void)
 
 void	print_status_unchecked(char *str, t_philo *philos)
 {
-	printf("[%lums] %i %s\n", get_time() - philos->arg->start_time,
+	printf("%lld %i %s\n", get_time() - philos->arg->start_time,
 		philos->number, str);
 }
 

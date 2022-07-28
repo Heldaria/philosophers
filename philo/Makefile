@@ -6,14 +6,14 @@
 #    By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 14:36:59 by llepiney          #+#    #+#              #
-#    Updated: 2022/07/28 12:11:22 by llepiney         ###   ########.fr        #
+#    Updated: 2022/07/28 16:28:43 by llepiney         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRC =	ft_ulong_atoi.c main.c \
-		philo_tools.c set_tools.c manage_tools.c check_args.c \
+		philo_tools.c set_tools.c manage_tools.c check_args.c ft_atoi.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -40,4 +40,4 @@ fclean: clean
 re: fclean all
 
 
-.PHONY : clean fclean bonus re all
+.PHONY : clean fclean re all

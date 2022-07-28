@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 15:31:36 by llepiney          #+#    #+#             */
-/*   Updated: 2022/07/28 13:03:39 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:28:59 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ int	set_check_args(int argc, char **argv, t_arg *args)
 		return (printf("Invalid number of arguments\n"), 0);
 	if (!is_num(argc, argv, 1))
 		return (printf("At least one arg is not a positive int\n"), 0);
-	ft_ulong_atoi(argv[1], &args->phil_numb);
+	args->phil_numb = ft_atoi(argv[1]);
 	if (args->phil_numb <= 0)
 		return (printf("Invalid number of philosopher(s)\n"), 0);
-	ft_ulong_atoi(argv[2], &args->time_to_die);
-	ft_ulong_atoi(argv[3], &args->time_to_eat);
-	ft_ulong_atoi(argv[4], &args->time_to_sleep);
+	args->time_to_die = ft_atoi(argv[2]);
+	args->time_to_eat = ft_atoi(argv[3]);
+	args->time_to_sleep = ft_atoi(argv[4]);
 	args->argc = argc;
 	args->death = 0;
 	args->begin = NULL;
 	if (argc == 6)
-		ft_ulong_atoi(argv[5], &args->numb_must_eat);
+		args->numb_must_eat = ft_atoi(argv[5]);
 	else
 		args->numb_must_eat = 0;
 	if (!int_check(argv, args))
-		return (printf("Int under/overflow\n"), 0);
+		return (printf("At least one arg leads to int overflow\n"), 0);
 	if (argc == 6 && args->numb_must_eat == 0)
 		return (0);
 	return (1);
@@ -81,7 +81,7 @@ int	solo_die(t_arg *args)
 		printf("0 1 is thinking\n");
 		printf("0 1 has taken a fork\n");
 		usleep(args->time_to_die * 1000);
-		printf("%u 1 died\n", args->time_to_die);
+		printf("%lld 1 died\n", args->time_to_die);
 		return (0);
 	}
 	return (1);

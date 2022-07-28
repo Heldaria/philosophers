@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:41:45 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/28 13:03:28 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:28:19 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ typedef struct s_philo	t_philo;
 typedef struct s_arg
 {
 	int				argc;
-	uint32_t		phil_numb;
-	uint32_t		time_to_die;
-	uint32_t		time_to_eat;
-	uint32_t		time_to_sleep;
-	uint32_t		numb_must_eat;
-	uint64_t		start_time;
+	long long		phil_numb;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
+	long long		numb_must_eat;
+	long long		start_time;
 	pthread_mutex_t	status;
 	bool			death;
 	t_philo			*begin;
@@ -41,8 +41,8 @@ typedef struct s_arg
 typedef struct s_philo
 {
 	int				number;
-	uint32_t		meal_count;
-	uint64_t		last_meal;
+	long long		meal_count;
+	long long		last_meal;
 	pthread_mutex_t	fork;
 	pthread_t		thread;
 	t_arg			*arg;
@@ -53,6 +53,7 @@ typedef struct s_philo
 bool			ft_ulong_atoi(const char *nptr, uint32_t *res);
 void			*start_routine(void *philo);
 int				ft_time_lord(t_arg *arg);
+int				check_death(long long *nb_finished, t_philo *phi, t_arg *arg);
 void			*eating(t_philo *phi, pthread_mutex_t **first,
 					pthread_mutex_t **second);
 
@@ -60,7 +61,7 @@ void			*eating(t_philo *phi, pthread_mutex_t **first,
 void			print_status_unchecked(char *str, t_philo *philos);
 int				print_status(char *str, t_philo *philos);
 int				ft_sleep(t_philo *philo, uint64_t duration);
-uint64_t		get_time(void);
+long long		get_time(void);
 int				set_philo_fail(t_arg *args);
 
 /*****************************PHILO_TOOLS*******************************/
@@ -75,7 +76,7 @@ void			set_fork(t_philo *phi, pthread_mutex_t **first,
 int				set_check_args(int argc, char **argv, t_arg *args);
 int				solo_die(t_arg *args);
 bool			is_num(int argc, char **argv, int i);
-bool			is_int(uint32_t n);
 bool			int_check(char **argv, t_arg *args);
+long long		ft_atoi(const char *nptr);
 
 #endif

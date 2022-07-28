@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:35:15 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/28 12:01:05 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:21:18 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	*start_routine(void *philo)
 	return ((void *)1);
 }
 
-int	check_death(size_t *nb_finished, t_philo *phi, t_arg *arg)
+int	check_death(long long *nb_finished, t_philo *phi, t_arg *arg)
 {
 	if (phi->meal_count >= arg->numb_must_eat)
 		*nb_finished = *nb_finished + 1;
@@ -79,8 +79,8 @@ int	check_death(size_t *nb_finished, t_philo *phi, t_arg *arg)
 
 int	ft_time_lord(t_arg *arg)
 {
-	t_philo	*phi;
-	size_t	nb_finished;
+	t_philo		*phi;
+	long long	nb_finished;
 
 	while (1)
 	{
@@ -106,7 +106,7 @@ int	ft_time_lord(t_arg *arg)
 
 int	main(int argc, char **argv)
 {
-	uint32_t		i;
+	long long		i;
 	t_arg			args;
 
 	if (!set_check_args(argc, argv, &args) || !solo_die(&args))

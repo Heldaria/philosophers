@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ulong_atoi.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 23:55:05 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/28 16:02:06 by llepiney         ###   ########.fr       */
+/*   Created: 2022/07/28 16:11:10 by llepiney          #+#    #+#             */
+/*   Updated: 2022/07/28 16:11:18 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdint.h>
 
-bool	ft_ulong_atoi(const char *nptr, uint32_t *res)
+long long	ft_atoi(const char *nptr)
 {
 	int			i;
-	uint32_t	result;
+	int			sign;
+	long long	result;
 
 	i = 0;
 	result = 0;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	sign = 1;
+	while (nptr[i] == ' ' || (nptr[i] > 8 && nptr[i] < 14))
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		if (result > ((UINT32_MAX - (nptr[i] - '0')) / 10))
-			return (0);
-		result = result * 10 + (nptr[i] - '0');
+		if (nptr[i] == '-')
+			sign = -1;
 		i++;
 	}
-	*res = result;
-	return (1);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = result * 10 + nptr[i] - '0';
+		i++;
+	}
+	return (result * sign);
 }
