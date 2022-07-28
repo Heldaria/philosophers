@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 19:35:15 by rigel             #+#    #+#             */
-/*   Updated: 2022/07/27 15:58:40 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:36:30 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	*eating(t_philo *phi, pthread_mutex_t **first, pthread_mutex_t **second)
 {
-	pthread_mutex_unlock(&phi->arg->status);
 	pthread_mutex_lock(*first);
 	if (!print_status("has taken a fork", phi))
 		return (pthread_mutex_unlock(*first), NULL);
@@ -46,6 +45,7 @@ void	*start_routine(void *philo)
 	pthread_mutex_lock(&*&phi->arg->status);
 	if (phi->arg->death == 1)
 		return (pthread_mutex_unlock(&phi->arg->status), NULL);
+	pthread_mutex_unlock(&phi->arg->status);
 	set_fork(phi, &first, &second);
 	while (1)
 	{

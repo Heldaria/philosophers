@@ -6,7 +6,7 @@
 #    By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/27 14:36:59 by llepiney          #+#    #+#              #
-#    Updated: 2022/07/27 15:35:32 by llepiney         ###   ########.fr        #
+#    Updated: 2022/07/28 10:47:10 by llepiney         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
@@ -33,15 +33,11 @@ $(NAME): $(OBJ) philo.h
 
 all: $(NAME)
 
-bonus: $(OBJ_BONUS) philo.h
-	$(CC) $(CFLAGS) -o philo_bonus $(OBJ_BONUS)
-
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS) 
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f philo_bonus
 
 re: fclean all
 
