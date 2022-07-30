@@ -6,7 +6,7 @@
 /*   By: llepiney <llepiney@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 11:45:16 by llepiney          #+#    #+#             */
-/*   Updated: 2022/07/28 16:33:28 by llepiney         ###   ########.fr       */
+/*   Updated: 2022/07/30 12:02:48 by llepiney         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ bool	is_num(int argc, char **argv, int i)
 	return (1);
 }
 
-
 static int	is_int(char *n)
 {
 	int	i;
@@ -61,7 +60,7 @@ static int	is_int(char *n)
 	return (1);
 }
 
-bool	int_check(char **argv,t_arg *args)
+bool	int_check(char **argv, t_arg *args)
 {
 	(void)argv;
 	if (is_int(argv[1]) < 0
